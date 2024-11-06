@@ -1,10 +1,11 @@
 package com.swaglabsdemo.stepdefinitions;
 
+import com.swaglabsdemo.Constants;
 import com.swaglabsdemo.hooks.DriverHook;
 import com.swaglabsdemo.pages.ProductPage;
 import com.swaglabsdemo.pages.LoginPage;
-import com.swaglabsdemo.pages.SidebarPage;
-import com.swaglabsdemo.utils.AuthenticateUserUtil;
+//import com.swaglabsdemo.pages.SidebarPage;
+import com.swaglabsdemo.utils.TestUtil;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,6 +14,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+
+import java.lang.constant.Constable;
 import java.util.List;
 
 public class ProductSteps {
@@ -21,18 +24,21 @@ public class ProductSteps {
     WebDriver driver = DriverHook.getDriver();
     LoginPage loginPage;
     ProductPage productPage;
-    SidebarPage sidebarPage;
+//    SidebarPage sidebarPage;
     List<String> productsAddedToCart;
 
     public ProductSteps(){
         logger.debug("Authenticating User...");
-        AuthenticateUserUtil.authenticateUser(driver);
+        TestUtil.authenticateUser(driver);
         logger.debug("User Login is Successful");
         productPage = new ProductPage(driver);
     }
 
     @Given("the user is logged in and the homepage is displayed")
     public void the_user_is_logged_in_and_the_homepage_is_displayed() {
+        String actualUrl = driver.getCurrentUrl();
+        String expectedUrl = Constants.PRODUCTPAGE_URL;
+        Assert.assertEquals(actualUrl, expectedUrl, "URL's do not match");
         logger.debug("User is logged in and the homepage is displayed.");
     }
 
@@ -99,9 +105,6 @@ public class ProductSteps {
         logger.info("Cart icon quantity check: expected {}, found {}", expectedQuantity, actualQuantity);
     }
 
-
-
-
 //    @When("the user navigates to the cart page")
 //    public void the_user_navigates_to_the_cart_page(){
 //
@@ -112,5 +115,15 @@ public class ProductSteps {
 //
 //    }
 
+    @When("the user filters the products based on the {string} criteria")
+    public void the_user_filters_the_products_based_on_the_criteria(String filterCriteria) {
+        productPage.selectFilterOption(filterCriteria);
+
+    }
+
+    @Then("the products should be filtered according to the {string} criteria")
+    public void the_products_should_be_filtered_according_to_the_criteria(String filterCriteria) {
+        productPage.assertProductOrder(filterCriteria);
+    }
 
 }

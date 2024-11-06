@@ -1,29 +1,32 @@
 package com.swaglabsdemo.stepdefinitions;
 
+import com.swaglabsdemo.Constants;
 import com.swaglabsdemo.hooks.DriverHook;
+import com.swaglabsdemo.utils.TestUtil;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import com.swaglabsdemo.pages.ProductPage;
 import com.swaglabsdemo.pages.LoginPage;
-import com.swaglabsdemo.pages.SidebarPage;
 
 public class LoginAndLogoutSteps {
+
+    private static final Logger logger = LogManager.getLogger(ProductSteps.class);
     WebDriver driver = DriverHook.getDriver();
     LoginPage loginPage;
     ProductPage productPage;
-    SidebarPage sidebarPage;
 
     public LoginAndLogoutSteps() {
         loginPage = new LoginPage(driver);
-        sidebarPage = new SidebarPage(driver);
     }
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
-        driver.get("https://www.saucedemo.com/");
+        driver.get(Constants.LOGINPAGE_URL);
     }
 
     @When("the user enters a valid {string} username and {string} password")
@@ -40,17 +43,18 @@ public class LoginAndLogoutSteps {
     @Then("the user is successfully logged in and the homepage is displayed")
     public void the_user_is_successfully_logged_in_and_homepage_is_displayed() {
         productPage = loginPage.redirectToHomePage();
-        Assert.assertEquals(productPage.getCurrentUrl(), "https://www.saucedemo.com/inventory.html", "URLs do not match");
+
+        String expectedUrl = Constants.PRODUCTPAGE_URL;
+        String actualUrl = productPage.getCurrentUrl();
+        Assert.assertEquals(actualUrl, expectedUrl, "URLs do not match");
     }
 
     @Then("the user can successfully log out")
     public void the_user_can_successfully_log_out() {
-        sidebarPage.openSideMenu();
-        sidebarPage.performWait(sidebarPage.getLogoutSideBarBtn(), 5);
-        sidebarPage.clickLogout();
+        loginPage = TestUtil.logoutUser(driver);
 
-        loginPage = sidebarPage.redirectToLoginPage();
-
-        Assert.assertEquals(loginPage.getCurrentUrl(), "https://www.saucedemo.com/", "Expected URLs do not match.");
+        String expectedUrl = Constants.LOGINPAGE_URL;
+        String actualUrl = loginPage.getCurrentUrl();
+        Assert.assertEquals(actualUrl,expectedUrl,"Expected URLs do not match.");
     }
 }

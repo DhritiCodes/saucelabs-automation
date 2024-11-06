@@ -1,11 +1,14 @@
 package com.swaglabsdemo.pages;
 
 import com.swaglabsdemo.utils.LogUtil;
+import com.swaglabsdemo.utils.WaitUtil;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
@@ -31,8 +34,15 @@ public class ProductPage extends BasePage {
     @FindBy(className="shopping_cart_badge")
     private WebElement cartBadge;
 
+    @FindBy(className = "product_sort_container")
+    private WebElement selectFilterBtn;
+
     public List<WebElement> getProducts() {
         return products;
+    }
+
+    public CartPage productPageToCartPage(){
+        return new CartPage(driver);
     }
 
     public boolean areProductsDisplayed() {
@@ -117,15 +127,12 @@ public class ProductPage extends BasePage {
                 logger.info("Clicked 'Add to cart' button for product: " + productName);
                 flag = 0;
             }
-//            }else{
-//                logger.warn("Product with name '" + productName + "' not found in the product list.");
-//            }
         }
 
         if(flag == 1 )
-        {
+            {
                 logger.warn("Product with name '" + productName + "' not found in the product list.");
-        }
+            }
     }
 
     public boolean isRemoveBtnVisible(String productName) {
@@ -141,6 +148,55 @@ public class ProductPage extends BasePage {
         int quantity = Integer.parseInt(cartBadge.getText());
         logger.debug("Cart quantity displayed: " + quantity);
         return quantity;
+    }
+
+    public void selectFilterOption(String filterOption){
+        WaitUtil.waitForElementToBeSelectable(driver,selectFilterBtn);
+
+        Select selectDropdown = new Select(selectFilterBtn);
+        selectDropdown.selectByVisibleText(filterOption);
+        logger.debug("Filter option "+filterOption+" is selected.");
+
+    }
+
+    public void assertProductOrder(String filterOption){
+        try{
+            List<String> productNames;
+            List<Double> productPrices;
+
+            switch (filterOption){
+                case "Name (A to Z)" -> {
+                    productNames = getProductTitles();
+                    assert isSorted(productNames, true)  : "Products are not sorted by Name (A to Z)";
+                }
+                case "Name (Z to A)"-> {
+                    productNames = getProductTitles();
+                    assert isSorted(productNames, false)  : "Products are not sorted by Name (Z to A)";
+                }
+                case "Price (low to high)"-> {
+                    productPrices = getProductPrices();
+                    assert isSorted(productPrices, true)  : "Products are not sorted by Price (low to high)";
+                }
+                case "Price (high to low)"-> {
+                    productPrices = getProductPrices();
+                    assert isSorted(productPrices, false)  : "Products are not sorted by Price (high to low)";
+                }
+                default -> throw new IllegalArgumentException("Filter Option is not recognised.");
+            }
+            logger.debug("Filtered Products for filter option {}", filterOption);
+        }catch(AssertionError e){
+            logger.error("Error occured during filtering products {}",e.getMessage());
+        }
+    }
+
+    private <T extends Comparable<T>> boolean isSorted(List<T> list, boolean ascending){
+        for(int i=0;i< list.size()-1;i++){
+            int compare = list.get(i).compareTo(list.get(i+1));
+            if((ascending && compare >0) || (!ascending && compare < 0)){
+                return false;
+            }
+        }
+        return true;
     }
 
 

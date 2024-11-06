@@ -59,10 +59,11 @@ import java.util.Properties;
 public class ConfigReader {
 
     private static Properties properties;
-    private static Logger logger = LogUtil.getLogger(ConfigReader.class);
+    private static Logger logger;
 
     // Static block to load the properties once
     static {
+        logger = LogUtil.getLogger(ConfigReader.class);
         try (FileInputStream fileInputStream = new FileInputStream("src/test/resources/config.properties")) {
             properties = new Properties();
             properties.load(fileInputStream);
@@ -72,32 +73,12 @@ public class ConfigReader {
         }
     }
 
-    // Static getter methods to access config properties
-
-    public static String getLoginPageUrl() {
-        logger.info("Reading loginpage.url from properties");
-        return properties.getProperty("loginpage.url");
+    public static String getValue(String key){
+        logger.info("Getting {}'s value from properties file.", key);
+        return properties.getProperty(key);
     }
 
-    public static String getProductListPageUrl() {
-        logger.info("Reading productlistpage.url from properties");
-        return properties.getProperty("productlistpage.url");
-    }
 
-    public static String getCartPageUrl() {
-        logger.info("Reading cartpage.url from properties");
-        return properties.getProperty("cartpage.url");
-    }
-
-    public static String getUsername() {
-        logger.info("Reading username from properties");
-        return properties.getProperty("username");
-    }
-
-    public static String getPassword() {
-        logger.info("Reading password from properties");
-        return properties.getProperty("password");
-    }
 }
 
 

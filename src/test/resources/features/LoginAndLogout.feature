@@ -1,3 +1,4 @@
+@login_logout
 Feature: User Login
   In order to access their account
   As a registered user

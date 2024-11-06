@@ -3,8 +3,10 @@ package com.swaglabsdemo.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends BasePage {
+public class LoginPage{
+    WebDriver driver;
 
     @FindBy(id = "user-name")
     private WebElement usernameField;
@@ -16,23 +18,31 @@ public class LoginPage extends BasePage {
     private WebElement loginButton;
 
     public LoginPage(WebDriver driver){
-        super(driver);
+        this.driver = driver;
+        PageFactory.initElements(driver,this);
     }
 
     public void sendUsername(String name){
-        setData(usernameField, name);
+        usernameField.sendKeys(name);
+//        setData(usernameField, name);
     }
 
     public void sendPassword(String password){
-        setData(passwordField, password);
+        passwordField.sendKeys(password);
+//        setData(passwordField, password);
     }
 
     public void clickLoginButton(){
-        clickElement(loginButton);
+        loginButton.click();
+//        clickElement(loginButton);
     }
 
     public ProductPage redirectToHomePage() {
         return new ProductPage(driver);
+    }
+
+    public String getCurrentUrl(){
+        return driver.getCurrentUrl();
     }
 
 }
