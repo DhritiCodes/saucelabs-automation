@@ -4,6 +4,7 @@ import com.swaglabsdemo.Constants;
 import com.swaglabsdemo.config.ConfigReader;
 import com.swaglabsdemo.pages.LoginPage;
 import com.swaglabsdemo.pages.ProductPage;
+import com.swaglabsdemo.pages.SidebarPage;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,9 +18,7 @@ public class TestUtil {
         logger.debug("Driver is getting url :"+Constants.LOGINPAGE_URL);
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.sendUsername(ConfigReader.getValue("username"));
-        loginPage.sendPassword(ConfigReader.getValue("password"));
-        loginPage.clickLoginButton();
+        loginPage.sendUsername(ConfigReader.getValue("username")).sendPassword(ConfigReader.getValue("password")).clickLoginButton();
     }
 
     public static LoginPage logoutUser(WebDriver driver){
@@ -29,23 +28,19 @@ public class TestUtil {
 
         productPage.openSideMenu();
         productPage.clickLogout();
-//        SidebarPage sidebarPage = new SidebarPage(driver);
-
-//        sidebarPage.openSideMenu();
-//        sidebarPage.clickLogout();
 
         return productPage.redirectToLoginPage();
     }
 
-//    public static void resetAppState(WebDriver driver){
-//
-//        SidebarPage sidebarPage = new SidebarPage(driver);
-//        sidebarPage.openSideMenu();
-//        sidebarPage.clickReset();
-//        sidebarPage.closeSideMenu();
-//
-//        //reload page
-//        ((JavascriptExecutor) driver).executeScript("location.reload();");
-////        driver.navigate().refresh();
-//    }
+    public static void resetAppState(WebDriver driver){
+
+        SidebarPage sidebarPage = new SidebarPage(driver);
+        sidebarPage.openSideMenu();
+        sidebarPage.clickReset();
+        sidebarPage.closeSideMenu();
+
+        //reload page
+        ((JavascriptExecutor) driver).executeScript("location.reload();");
+//        driver.navigate().refresh();
+    }
 }

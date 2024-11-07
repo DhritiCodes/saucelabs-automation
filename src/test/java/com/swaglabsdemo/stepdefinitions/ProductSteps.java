@@ -4,7 +4,6 @@ import com.swaglabsdemo.Constants;
 import com.swaglabsdemo.hooks.DriverHook;
 import com.swaglabsdemo.pages.ProductPage;
 import com.swaglabsdemo.pages.LoginPage;
-//import com.swaglabsdemo.pages.SidebarPage;
 import com.swaglabsdemo.utils.TestUtil;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -15,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-import java.lang.constant.Constable;
 import java.util.List;
 
 public class ProductSteps {
@@ -104,16 +102,6 @@ public class ProductSteps {
         Assert.assertEquals(actualQuantity, expectedQuantity, "Quantities do not match");
         logger.info("Cart icon quantity check: expected {}, found {}", expectedQuantity, actualQuantity);
     }
-
-//    @When("the user navigates to the cart page")
-//    public void the_user_navigates_to_the_cart_page(){
-//
-//    }
-//
-//    @Then("the cart displays the following items with the correct quantities:")
-//    public void the_cart_displays_the_following_items_with_the_correct_quantities(io.cucumber.datatable.DataTable dataTable) {
-//
-//    }
 
     @When("the user filters the products based on the {string} criteria")
     public void the_user_filters_the_products_based_on_the_criteria(String filterCriteria) {

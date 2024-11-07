@@ -7,8 +7,9 @@ Feature: User Login
   Background:
     Given the user is on the login page
 
+  @positive
   Scenario Outline: Successful login and logout
-    When the user enters a valid "<username>" username and "<password>" password
+    When the user enters "<username>" and "<password>"
     And the user clicks the submit button
     Then the user is successfully logged in and the homepage is displayed
     Then the user can successfully log out

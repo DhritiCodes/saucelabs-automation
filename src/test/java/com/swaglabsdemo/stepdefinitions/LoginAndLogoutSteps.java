@@ -29,7 +29,7 @@ public class LoginAndLogoutSteps {
         driver.get(Constants.LOGINPAGE_URL);
     }
 
-    @When("the user enters a valid {string} username and {string} password")
+    @When("the user enters {string} and {string}")
     public void the_user_enters_a_valid_username_and_password(String username, String password) {
         loginPage.sendUsername(username);
         loginPage.sendPassword(password);

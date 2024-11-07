@@ -1,4 +1,4 @@
-@product_tag
+@product
 Feature: Product Management
 
   In order to manage products
@@ -24,8 +24,6 @@ Feature: Product Management
       |Sauce Labs Fleece Jacket  |
     Then the Add to cart button changes to Remove button for added products
     And the cart icon displays correct quantity
-
-  Scenario:
 
   @positive @filter_product
   Scenario Outline: Filter Product

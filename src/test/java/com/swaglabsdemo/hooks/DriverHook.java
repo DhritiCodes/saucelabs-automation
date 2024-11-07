@@ -19,7 +19,6 @@ public class DriverHook {
     public void setup(Scenario scenario) throws DriverSetupException{
         try {
             driver = DriverManagerConfig.getDriver(TestRunner.getBrowser());
-
             driver.manage().window().maximize();
             logger.info("Driver setup for {} is completed.", scenario.getName());
         } catch (Exception e) {

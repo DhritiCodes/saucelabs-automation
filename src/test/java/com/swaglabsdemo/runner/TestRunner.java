@@ -6,18 +6,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 
-import java.sql.DriverManager;
-
 @CucumberOptions(
         features = "src/test/resources/features/",
         glue = {"com.swaglabsdemo.stepdefinitions","com.swaglabsdemo.hooks"},
         plugin = {"pretty",
                 "html:target/cucumber-reports.html",
-//                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
         monochrome = false,
         dryRun = false
-        ,tags = "@login_logout"
+//        ,tags = "@cart"
 )
 
 public class TestRunner extends AbstractTestNGCucumberTests {

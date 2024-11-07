@@ -10,20 +10,20 @@
         </classes>
     </test>
 
-<!--    &lt;!&ndash; Test using Edge &ndash;&gt;-->
-<!--    <test name="EdgeTest">-->
-<!--        <parameter name="browserName" value="edge"/>-->
-<!--        <classes>-->
-<!--            <class name="com.swaglabsdemo.runner.TestRunner"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <!-- Test using Edge -->
+    <test name="EdgeTest">
+        <parameter name="browserName" value="edge"/>
+        <classes>
+            <class name="com.swaglabsdemo.runner.TestRunner"/>
+        </classes>
+    </test>
 
-<!--    &lt;!&ndash; Test using Firefox &ndash;&gt;-->
-<!--    <test name="FirefoxTest">-->
-<!--        <parameter name="browserName" value="firefox"/>-->
-<!--        <classes>-->
-<!--            <class name="com.swaglabsdemo.runner.TestRunner"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <!-- Test using Firefox -->
+    <test name="FirefoxTest">
+        <parameter name="browserName" value="firefox"/>
+        <classes>
+            <class name="com.swaglabsdemo.runner.TestRunner"/>
+        </classes>
+    </test>
 
 </suite>

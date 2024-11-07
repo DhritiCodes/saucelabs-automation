@@ -1,12 +1,14 @@
 package com.swaglabsdemo.pages;
 
+import com.swaglabsdemo.utils.LogUtil;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage{
-    WebDriver driver;
+public class LoginPage extends BasePage{
+
+    private static final Logger logger = LogUtil.getLogger(LoginPage.class);
 
     @FindBy(id = "user-name")
     private WebElement usernameField;
@@ -18,31 +20,31 @@ public class LoginPage{
     private WebElement loginButton;
 
     public LoginPage(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+        super(driver);
     }
 
-    public void sendUsername(String name){
-        usernameField.sendKeys(name);
-//        setData(usernameField, name);
+    //chaining methods ------------------------------------------------------------------------------------------------
+
+    public LoginPage sendUsername(String name){
+        setData(usernameField, name);
+        return this;
     }
 
-    public void sendPassword(String password){
-        passwordField.sendKeys(password);
-//        setData(passwordField, password);
+    public LoginPage sendPassword(String password){
+        setData(passwordField, password);
+        return this;
     }
 
-    public void clickLoginButton(){
-        loginButton.click();
-//        clickElement(loginButton);
+    public LoginPage clickLoginButton(){
+        clickElement(loginButton);
+        return this;
     }
+
+    //navigation methods ----------------------------------------------------------------------------------------------
 
     public ProductPage redirectToHomePage() {
+        logger.debug("Redirected to home page successfully, ProductPage object created.");
         return new ProductPage(driver);
-    }
-
-    public String getCurrentUrl(){
-        return driver.getCurrentUrl();
     }
 
 }

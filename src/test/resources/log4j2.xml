@@ -9,9 +9,6 @@
         </File>
     </Appenders>
     <Loggers>
-<!--        <Logger name="org.openqa.selenium.devtools" level="error" additivity="false">-->
-<!--            <AppenderRef ref="Console"/>-->
-<!--        </Logger>-->
         <Root level="debug">
             <AppenderRef ref="Console" level="info"/>
             <AppenderRef ref="File"/>

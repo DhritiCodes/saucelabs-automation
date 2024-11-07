@@ -14,13 +14,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProductPage extends BasePage {
+public class ProductPage extends SidebarPage {
 
     private final static Logger logger = LogUtil.getLogger(ProductPage.class);
 
     public ProductPage(WebDriver driver) {
         super(driver);
     }
+
+    //WEB ELEMENTS -------------------------------------------------------------------------------------------
 
     @FindBy(className = "inventory_item")
     private List<WebElement> products;
@@ -37,18 +39,11 @@ public class ProductPage extends BasePage {
     @FindBy(className = "product_sort_container")
     private WebElement selectFilterBtn;
 
+
+    //getter methods -------------------------------------------------------------------------------------------------
+
     public List<WebElement> getProducts() {
         return products;
-    }
-
-    public CartPage productPageToCartPage(){
-        return new CartPage(driver);
-    }
-
-    public boolean areProductsDisplayed() {
-        int count = products.size();
-        logger.debug("Checking if products are displayed. Total products found: " + count);
-        return count > 0;
     }
 
     public List<String> getProductTitles() {
@@ -76,6 +71,12 @@ public class ProductPage extends BasePage {
         return prices;
     }
 
+    public int getCartQuantity() {
+        int quantity = Integer.parseInt(cartBadge.getText());
+        logger.debug("Cart quantity displayed: " + quantity);
+        return quantity;
+    }
+
     public List<String> getInvalidProductImageUrls() {
         List<String> invalidImageUrls = productImages.stream()
                 .map(img -> img.getAttribute("src"))
@@ -89,31 +90,7 @@ public class ProductPage extends BasePage {
         return invalidImageUrls;
     }
 
-    public boolean isValidImage(String imageUrl) {
-        try {
-            URL url = new URL(imageUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            logger.debug("Image URL: " + imageUrl + " returned status code: " + responseCode);
-            return responseCode == 200;
-        } catch (Exception e) {
-            logger.error("Could not validate image URL: " + imageUrl + ". Error: " + e.getMessage(), e);
-            return false;
-        }
-    }
-
-    public boolean areAllAddToCartButtonsDisplayed() {
-        boolean allDisplayed = productAddToCartButtons.stream()
-                .allMatch(btn -> btn.isDisplayed() && btn.isEnabled());
-        if (allDisplayed) {
-            logger.debug("All 'Add to Cart' buttons are displayed and enabled.");
-        } else {
-            logger.warn("Some 'Add to Cart' buttons are either not displayed or disabled.");
-        }
-        return allDisplayed;
-    }
+    //action methods -------------------------------------------------------------------------------------------------
 
     public void addProductToCart(String productName) {
 
@@ -128,26 +105,7 @@ public class ProductPage extends BasePage {
                 flag = 0;
             }
         }
-
-        if(flag == 1 )
-            {
-                logger.warn("Product with name '" + productName + "' not found in the product list.");
-            }
-    }
-
-    public boolean isRemoveBtnVisible(String productName) {
-        boolean removeBtnVisible = products.stream()
-                .filter(prod -> prod.findElement(By.className("inventory_item_name")).getText().equals(productName))
-                .map(prod -> prod.findElement(By.className("btn_inventory")))
-                .anyMatch(prod -> prod.getText().equals("Remove") && prod.isDisplayed());
-        logger.debug("Remove button visibility for product '" + productName + "': " + removeBtnVisible);
-        return removeBtnVisible;
-    }
-
-    public int getCartQuantity() {
-        int quantity = Integer.parseInt(cartBadge.getText());
-        logger.debug("Cart quantity displayed: " + quantity);
-        return quantity;
+        if(flag == 1 ) logger.warn("Product with name '" + productName + "' not found in the product list.");
     }
 
     public void selectFilterOption(String filterOption){
@@ -157,6 +115,34 @@ public class ProductPage extends BasePage {
         selectDropdown.selectByVisibleText(filterOption);
         logger.debug("Filter option "+filterOption+" is selected.");
 
+    }
+
+    //validation methods -------------------------------------------------------------------------------------------------
+
+    public boolean areProductsDisplayed() {
+        int count = products.size();
+        logger.debug("Checking if products are displayed. Total products found: " + count);
+        return count > 0;
+    }
+
+    public boolean areAllAddToCartButtonsDisplayed() {
+        boolean allDisplayed = productAddToCartButtons.stream()
+                .allMatch(btn -> btn.isDisplayed() && btn.isEnabled());
+        if (allDisplayed) {
+            logger.debug("All 'Add to Cart' buttons are displayed and enabled.");
+        } else {
+            logger.warn("Some 'Add to Cart' buttons are either not displayed or disabled.");
+        }
+        return allDisplayed;
+    }
+
+    public boolean isRemoveBtnVisible(String productName) {
+        boolean removeBtnVisible = products.stream()
+                .filter(prod -> prod.findElement(By.className("inventory_item_name")).getText().equals(productName))
+                .map(prod -> prod.findElement(By.className("btn_inventory")))
+                .anyMatch(prod -> prod.getText().equals("Remove") && prod.isDisplayed());
+        logger.debug("Remove button visibility for product '" + productName + "': " + removeBtnVisible);
+        return removeBtnVisible;
     }
 
     public void assertProductOrder(String filterOption){
@@ -189,6 +175,23 @@ public class ProductPage extends BasePage {
         }
     }
 
+    public boolean isValidImage(String imageUrl) {
+        try {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            logger.debug("Image URL: " + imageUrl + " returned status code: " + responseCode);
+            return responseCode == 200;
+        } catch (Exception e) {
+            logger.error("Could not validate image URL: " + imageUrl + ". Error: " + e.getMessage(), e);
+            return false;
+        }
+    }
+
+    //util methods -------------------------------------------------------------------------------------------------
+
     private <T extends Comparable<T>> boolean isSorted(List<T> list, boolean ascending){
         for(int i=0;i< list.size()-1;i++){
             int compare = list.get(i).compareTo(list.get(i+1));
@@ -199,6 +202,12 @@ public class ProductPage extends BasePage {
         return true;
     }
 
+
+    //navigation methods -------------------------------------------------------------------------------------------------
+
+    public CartPage productPageToCartPage(){
+        return new CartPage(driver);
+    }
 
 }
 

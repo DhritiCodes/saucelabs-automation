@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-public class CheckoutCompletePage extends BasePage{
+public class CheckoutCompletePage extends SidebarPage{
 
     public CheckoutCompletePage(WebDriver driver){
         super(driver);
@@ -17,4 +17,10 @@ public class CheckoutCompletePage extends BasePage{
     @CacheLookup
     @FindBy(className = "shopping_cart_link")
     private WebElement cartBtn;
+
+    //getter methods -----------------------------------------------------------------------------------------------
+
+    public String getSuccessMessage(){
+        return orderPlacedMessage.getText();
+    }
 }
