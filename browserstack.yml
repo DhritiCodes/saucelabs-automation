@@ -1,37 +1,26 @@
-#userName: dhriti_rf98oI
-#accessKey: paim1AUtR4YrQHWyru7W
-#projectName: Dhriti's BrowserStack Sample
-#buildName: browserstack build
-#buildIdentifier: '#${BUILD_NUMBER}' # Supports strings along with either/both ${expression}
-#framework: cucumber-testng
-#platforms:
-#  - os: Windows
-#    osVersion: 10
-#    browserName: Chrome
-#    browserVersion: latest
-#  - os: Windows
-#    osVersion: 10
-#    browserName: Edge
-#    browserVersion: latest
-#  - os: Windows
-#    osVersion: 10
-#    browserName: Firefox
-#    browserVersion: 130.0
-#parallelsPerPlatform: 5
-#source: cucumber-testng:intellij:v1.1.6
-#browserstackLocal: false
-#
-## Options to be passed to BrowserStack local in-case of advanced configurations
-## browserStackLocalOptions:
-#  # localIdentifier: # <string> (Default: null) Needed if you need to run multiple instances of local.
-#  # forceLocal: true  # <boolean> (Default: false) Set to true if you need to resolve all your traffic via BrowserStack Local tunnel.
-#  # skipBinaryInitialisation: true # <boolean> (Default: false) Set to true if you need to skip the Local Binary initialisation through SDK.
-#  # Entire list of arguments available here -> https://www.browserstack.com/docs/automate/selenium/manage-incoming-connections
-#
-## ===================
-## Debugging features
-## ===================
-#debug: true # <boolean> # Set to true if you need screenshots for every selenium command ran
-#networkLogs: false # <boolean> Set to true to enable HAR logs capturing
-#consoleLogs: info # <string> Remote browser's console debug levels to be printed (Default: errors)
-## Available options are `disable`, `errors`, `warnings`, `info`, `verbose` (Default: errors)
+userName: dhriti_rf98oI
+accessKey: paim1AUtR4YrQHWyru7W
+projectName: Dhriti's BrowserStack Sample
+buildName: browserstack build
+buildIdentifier: '#${BUILD_NUMBER}' # Supports strings along with either/both ${expression}
+framework: cucumber-testng
+platforms:
+  - os: Windows
+    osVersion: 10
+    browserName: Chrome
+    browserVersion: latest
+  - os: Windows
+    osVersion: 10
+    browserName: Edge
+    browserVersion: latest
+  - os: Windows
+    osVersion: 10
+    browserName: Firefox
+    browserVersion: 130.0
+parallelsPerPlatform: 10
+source: cucumber-testng:intellij:v1.1.6
+browserstackLocal: false
+
+debug: true # <boolean> # Set to true if you need screenshots for every selenium command ran
+networkLogs: false # <boolean> Set to true to enable HAR logs capturing
+consoleLogs: info # <string> Remote browser's console debug levels to be printed (Default: errors)

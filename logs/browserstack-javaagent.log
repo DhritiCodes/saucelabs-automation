@@ -1249,3 +1249,107 @@
 
 
 10:00:36.060 [main] DEBUG c.b.utils.FunnelInstrumentation - API Event Observability_Crash_Report_Upload response - OK
+10:08:21.815 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.21.0
+10:08:21.815 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+10:08:22.038 [main] DEBUG c.b.config.BrowserStackConfig - Cli Config passed - {}
+10:08:22.038 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : C:\Users\dhritideepa_gorai\Desktop\GC\swaglabs-automation\browserstack.yml
+10:08:22.085 [main] ERROR c.b.config.BrowserStackConfig - Malformed browserstack.yml file - java.lang.NullPointerException: Cannot invoke "java.util.Map.size()" because "m" is null.
+10:08:22.095 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+10:08:22.095 [main] INFO  c.b.config.BrowserStackConfig - Few SDK features were not activated as platforms object was not defined
+10:08:22.365 [main] ERROR c.browserstack.BrowserStackJavaAgent - Something went wrong - com.browserstack.utils.BrowserStackSDKException: Empty userName or accessKey
+	at com.browserstack.BrowserStackJavaAgent.b(Unknown Source)
+	at com.browserstack.BrowserStackJavaAgent.a(Unknown Source)
+	at com.browserstack.BrowserStackJavaAgent.premain(Unknown Source)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.instrument/sun.instrument.InstrumentationImpl.loadClassAndStartAgent(InstrumentationImpl.java:560)
+	at java.instrument/sun.instrument.InstrumentationImpl.loadClassAndCallPremain(InstrumentationImpl.java:572)
+
+10:08:31.895 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.21.0
+10:08:31.902 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+10:08:32.075 [main] DEBUG c.b.config.BrowserStackConfig - Cli Config passed - {}
+10:08:32.075 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : C:\Users\dhritideepa_gorai\Desktop\GC\swaglabs-automation\browserstack.yml
+10:08:32.125 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+10:08:32.655 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to cucumber-testng
+10:08:37.385 [main] INFO  c.browserstack.BrowserStackJavaAgent - Project and debug logs are captured by default. To disable, set disableAutoCaptureLogs: true in config.
+10:09:05.006 [SIGINT handler] INFO  c.b.utils.ExitSignalHandler - Shutdown triggered by: INT 2
+10:09:05.357 [Thread-0] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/re7cyzlhinkfsecnbn1woszoas33odyxf2ovxlf9 to view build report, insights, and many more debugging information all at one place!
+
+10:09:05.357 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:09:07.616 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/beecd73f53005cec2fb608450c5ec0ec08f64de7
+10:09:07.616 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:11:08.917 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.21.0
+10:11:08.920 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+10:11:09.085 [main] DEBUG c.b.config.BrowserStackConfig - Cli Config passed - {}
+10:11:09.085 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : C:\Users\dhritideepa_gorai\Desktop\GC\swaglabs-automation\browserstack.yml
+10:11:09.130 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+10:11:09.667 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to cucumber-testng
+10:11:14.167 [main] INFO  c.browserstack.BrowserStackJavaAgent - Project and debug logs are captured by default. To disable, set disableAutoCaptureLogs: true in config.
+10:12:50.735 [Thread-0] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/gpmjnctec3olxhjdzpgcqf12jtyuamdgibtnmloi to view build report, insights, and many more debugging information all at one place!
+
+10:12:50.735 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:12:53.261 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/16eb7174cd0f6daa64904b93d7dc1bd2c61e1d3f
+10:12:53.262 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:17:04.447 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is null. We currently support frameworks testng, cucumber-testng & serenity
+10:17:12.984 [main] DEBUG c.browserstack.utils.LogReportingAPI - 
+[2024-11-20T04:47:12.984631800Z][ OBSERVABILITY ] Exception in populating data for Test Disabled : java.lang.NullPointerException: Cannot invoke "String.contains(java.lang.CharSequence)" because the return value of "com.browserstack.config.BrowserStackConfig.getFramework()" is null
+	at com.browserstack.testNgListeners.TmpSuiteListener.onFinish(Unknown Source)
+	at org.testng.TestRunner.fireEvent(TestRunner.java:873)
+	at org.testng.TestRunner.afterRun(TestRunner.java:828)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+
+
+10:17:14.082 [main] DEBUG c.b.utils.FunnelInstrumentation - API Event Observability_Crash_Report_Upload response - OK
+10:17:37.201 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.21.0
+10:17:37.201 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+10:17:37.365 [main] DEBUG c.b.config.BrowserStackConfig - Cli Config passed - {}
+10:17:37.365 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : C:\Users\dhritideepa_gorai\Desktop\GC\swaglabs-automation\browserstack.yml
+10:17:37.413 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+10:17:37.982 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to cucumber-testng
+10:17:42.379 [main] INFO  c.browserstack.BrowserStackJavaAgent - Project and debug logs are captured by default. To disable, set disableAutoCaptureLogs: true in config.
+10:17:50.082 [Thread-0] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/pu0guzxcezparuopjkgevftl7spbl53de8sceoyn to view build report, insights, and many more debugging information all at one place!
+
+10:17:50.082 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:17:52.637 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/ba442641dda43edd6c672b766a48657efa93f176
+10:17:52.638 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:18:32.759 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.21.0
+10:18:32.759 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+10:18:32.919 [main] DEBUG c.b.config.BrowserStackConfig - Cli Config passed - {}
+10:18:32.919 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : C:\Users\dhritideepa_gorai\Desktop\GC\swaglabs-automation\browserstack.yml
+10:18:32.966 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+10:18:33.525 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to cucumber-testng
+10:18:37.413 [main] INFO  c.browserstack.BrowserStackJavaAgent - Project and debug logs are captured by default. To disable, set disableAutoCaptureLogs: true in config.
+10:20:26.455 [Thread-0] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/uiqrly1tqvuev3u25m1fuak403sdwcqnrnewmhte to view build report, insights, and many more debugging information all at one place!
+
+10:20:26.455 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:20:28.886 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/91a8db30a835ff4ce3af108744a78b7c024b4993
+10:20:28.886 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:22:39.686 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.21.0
+10:22:39.686 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+10:22:39.869 [main] DEBUG c.b.config.BrowserStackConfig - Cli Config passed - {}
+10:22:39.869 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : C:\Users\dhritideepa_gorai\Desktop\GC\swaglabs-automation\browserstack.yml
+10:22:39.903 [main] INFO  c.b.config.BrowserStackConfig - Detected Framework testng
+10:22:40.462 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to cucumber-testng
+10:22:45.404 [main] INFO  c.browserstack.BrowserStackJavaAgent - Project and debug logs are captured by default. To disable, set disableAutoCaptureLogs: true in config.
+10:24:49.289 [Thread-0] INFO  c.browserstack.utils.LogReportingAPI - Visit https://observability.browserstack.com/builds/oavn3cjguojqcrlth2ia7gpxp16vk0zb71wacjqj to view build report, insights, and many more debugging information all at one place!
+
+10:24:49.290 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+10:24:52.054 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/7f10640b094c302656ce7ffd6b4d7b18fe346f0d
+10:24:52.054 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO

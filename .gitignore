@@ -40,3 +40,5 @@ build/
 
 README
 .idea
+./browserstack.yml
+browserstack.yml

@@ -22,13 +22,13 @@ public class DriverHook {
     public void setup(Scenario scenario) throws DriverSetupException{
         try {
             MutableCapabilities capabilities = new MutableCapabilities();
-//            HashMap<String, String> bstackOptions = new HashMap<>();
-//            bstackOptions.putIfAbsent("source", "cucumber-java:sample-master:v1.2");
-//            capabilities.setCapability("bstack:options", bstackOptions);
-//            driver = new RemoteWebDriver(
-//                    new URL("https://hub.browserstack.com/wd/hub"), capabilities);
+            HashMap<String, String> bstackOptions = new HashMap<>();
+            bstackOptions.putIfAbsent("source", "cucumber-java:sample-master:v1.2");
+            capabilities.setCapability("bstack:options", bstackOptions);
+            WebDriver driver = new RemoteWebDriver(
+                    new URL("https://hub.browserstack.com/wd/hub"), capabilities);
 
-            WebDriver driver = DriverManagerConfig.getDriver(TestRunner.getBrowser());
+//            WebDriver driver = DriverManagerConfig.getDriver(TestRunner.getBrowser());
             driver.manage().window().maximize();
             logger.info("Driver setup for {} is completed.", scenario.getName());
         } catch (Exception e) {
