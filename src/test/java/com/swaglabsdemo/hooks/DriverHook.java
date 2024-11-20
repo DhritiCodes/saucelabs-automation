@@ -10,15 +10,25 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.URL;
+import java.util.HashMap;
 
 public class DriverHook {
-    private static WebDriver driver;
     private static final Logger logger = LogUtil.getLogger(DriverHook.class);
 
     @Before
     public void setup(Scenario scenario) throws DriverSetupException{
         try {
-            driver = DriverManagerConfig.getDriver(TestRunner.getBrowser());
+            MutableCapabilities capabilities = new MutableCapabilities();
+//            HashMap<String, String> bstackOptions = new HashMap<>();
+//            bstackOptions.putIfAbsent("source", "cucumber-java:sample-master:v1.2");
+//            capabilities.setCapability("bstack:options", bstackOptions);
+//            driver = new RemoteWebDriver(
+//                    new URL("https://hub.browserstack.com/wd/hub"), capabilities);
+
+            WebDriver driver = DriverManagerConfig.getDriver(TestRunner.getBrowser());
             driver.manage().window().maximize();
             logger.info("Driver setup for {} is completed.", scenario.getName());
         } catch (Exception e) {
@@ -28,7 +38,7 @@ public class DriverHook {
     }
 
     public static WebDriver getDriver(){
-        return driver;
+        return DriverManagerConfig.getDriver(TestRunner.getBrowser());
     }
 
     @After
@@ -45,7 +55,7 @@ public class DriverHook {
     @After
     public void takeScreenshotOnFailure(Scenario scenario){
         if(scenario.isFailed()){
-            ScreenShotUtil.captureScreenshot(driver, scenario.getName());
+            ScreenShotUtil.captureScreenshot(DriverManagerConfig.getDriver(TestRunner.getBrowser()), scenario.getName());
             logger.info("Captured screenshot for failed scenario : "+scenario.getName());
         }
     }

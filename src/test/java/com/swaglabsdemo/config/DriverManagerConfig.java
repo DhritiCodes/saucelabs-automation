@@ -13,9 +13,8 @@ public class DriverManagerConfig {
     private DriverManagerConfig(){}
 
     public static WebDriver getDriver(String browser){
-
-        if(threadlocalDriver.get() == null ){
-            synchronized (DriverManagerConfig.class){
+//        if(threadlocalDriver.get() == null){
+//            synchronized (DriverManagerConfig.class){  //slows down execution
                 if(threadlocalDriver.get() == null){
                     WebDriver driver;
                     switch (browser.toLowerCase()){
@@ -31,11 +30,11 @@ public class DriverManagerConfig {
                             WebDriverManager.firefoxdriver().setup();
                             driver = new FirefoxDriver();
                         }
-                        default -> throw new IllegalArgumentException("Browser not recognized");
+                        default -> throw new IllegalArgumentException("Browser not recognized "+browser+". Please specify 'chrome', 'firefox', or 'edge'.");
                     }
                     threadlocalDriver.set(driver);
-                }
-            }
+//                }
+//            }
         }
         return threadlocalDriver.get();
     }

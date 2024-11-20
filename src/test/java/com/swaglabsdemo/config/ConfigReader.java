@@ -15,12 +15,16 @@ public class ConfigReader {
     // Static block to load the properties once
     static {
         logger = LogUtil.getLogger(ConfigReader.class);
-        try (FileInputStream fileInputStream = new FileInputStream("src/test/resources/config.properties")) {
+        String env = System.getProperty("env");
+//        String filePath = "src/test/resources/"+env+".properties";
+        String filePath = "src/test/resources/test.properties";
+
+        try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
             properties = new Properties();
             properties.load(fileInputStream);
             logger.info("Config file loaded successfully.");
         } catch (IOException e) {
-            logger.error("Could not load config.properties file: " + e);
+            logger.error("Could not load test.properties file: " + e);
         }
     }
 
